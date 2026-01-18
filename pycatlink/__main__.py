@@ -76,7 +76,6 @@ async def devices(
     for i, device in enumerate(devices):
         typer.echo(f"Device {i + 1}")
         typer.echo(device.device_info)
-    await account.disconnect()
 
 
 @app.command()
@@ -146,8 +145,6 @@ async def device(
 
     typer.echo(f"Details for device ID {device_id}:")
     typer.echo(device_details)
-
-    await account.disconnect()
 
 
 if __name__ == "__main__":

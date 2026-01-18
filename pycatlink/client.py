@@ -37,11 +37,6 @@ class CatlinkApiClient:
     def __init__(self, config: CatlinkAccountConfig) -> None:
         """Initialize the client."""
         self.config = config
-        self.session = ClientSession()
-
-    async def disconnect(self) -> None:
-        """Disconnect the account."""
-        await self.session.close()
 
     @property
     def password(self) -> str:
@@ -92,8 +87,9 @@ class CatlinkApiClient:
         }
 
         try:
-            response = await self.session.request(method.value, url, **request_kwargs)
-            response_data = await response.json()
+            async with ClientSession() as session:
+                response = await session.request(method.value, url, **request_kwargs)
+                response_data = await response.json()
         except (ClientConnectorError, TimeoutError, ContentTypeError) as exception:
             raise CatlinkRequestError(method.value, url, prepared_params) from exception
 

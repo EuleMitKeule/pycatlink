@@ -27,10 +27,6 @@ class CatlinkAccount:
 
         self._client = CatlinkApiClient(config)
 
-    async def disconnect(self) -> None:
-        """Disconnect the account."""
-        await self._client.disconnect()
-
     async def get_devices(
         self,
     ) -> list[
