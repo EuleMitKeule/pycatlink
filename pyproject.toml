@@ -3,7 +3,7 @@ name = "pycatlink"
 version = "0.0.0-dev"
 description = "CatLink API Library"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.13"
 dependencies = [
     "aiohttp>=3.8.0",
     "cryptography>=41.0.0",
