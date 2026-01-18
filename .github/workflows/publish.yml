@@ -58,6 +58,9 @@ jobs:
   package:
     needs: version
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/pycatlink
     permissions:
       id-token: write
     steps:
@@ -79,9 +82,13 @@ jobs:
       - name: Install dependecies
         run: uv sync
 
-      - name: Set package version
+      - name: Set all versions
         run: |
-          uvx --from=toml-cli toml set --toml-path=pyproject.toml project.version ${{ needs.version.outputs.version }}
+          $version = "${{ needs.version.outputs.version }}"
+          Get-ChildItem -Recurse -File | ForEach-Object {
+            (Get-Content $_.FullName -Raw) -replace '0\.0\.0-dev', $version | Set-Content $_.FullName -NoNewline
+          }
+        shell: pwsh
 
       - name: Build package
         run: |
