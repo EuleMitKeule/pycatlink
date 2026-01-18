@@ -12,6 +12,10 @@ dependencies = [
     "typer>=0.21.1",
 ]
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [dependency-groups]
 dev = [
     "mypy>=1.19.1",
