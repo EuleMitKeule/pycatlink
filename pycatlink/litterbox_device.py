@@ -24,7 +24,7 @@ class CatlinkLitterBoxDevice(CatlinkDevice[CatlinkLitterBoxDeviceDetails]):
     """Litter box class for CatLink."""
 
     DETAILS_CLASS = CatlinkLitterBoxDeviceDetails
-    SUPPORTED_MODES = [
+    SUPPORTED_MODELS = [
         CatlinkWorkModel.AUTO,
         CatlinkWorkModel.MANUAL,
         CatlinkWorkModel.TIME,

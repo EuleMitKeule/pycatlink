@@ -15,7 +15,7 @@ class CatlinkScooperDevice(CatlinkDevice[CatlinkDeviceDetails]):
     """Scooper device class for CatLink."""
 
     DETAILS_CLASS = CatlinkDeviceDetails
-    SUPPORTED_MODES = [
+    SUPPORTED_MODELS = [
         CatlinkWorkModel.AUTO,
         CatlinkWorkModel.MANUAL,
         CatlinkWorkModel.TIME,
