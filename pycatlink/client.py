@@ -21,7 +21,7 @@ from .const import (
     PARAMETER_TOKEN,
     PASSWORD_MAX_LENGTH,
     PLATFORM_ANDROID,
-    RESPONSE_DATA,
+    RESPONSE_KEY_DATA,
     RESPONSE_RETURN_CODE,
     USER_AGENT,
     HttpMethod,
@@ -58,7 +58,7 @@ class CatlinkApiClient:
             },
         )
 
-        token = response.get(RESPONSE_DATA, {}).get(DATA_KEY_TOKEN)
+        token = response.get(RESPONSE_KEY_DATA, {}).get(DATA_KEY_TOKEN)
         if not token:
             raise CatlinkLoginError(self.config.phone, response)
 

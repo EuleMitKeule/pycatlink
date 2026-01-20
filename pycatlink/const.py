@@ -34,7 +34,6 @@ RSA_PRIVATE_KEY = (
     "I0eGQrD/W4rBeoCX8sJDCH49lMsec52TFI2Gn8tTKOCqqgGvRSKDJ005HlnmKw=="
 )
 
-DEFAULT_PHONE_INTERNATIONAL_CODE = "86"
 DEFAULT_LANGUAGE = "en_US"
 DEFAULT_REQUEST_TIMEOUT = 5
 
@@ -49,13 +48,35 @@ API_FEEDER_DETAIL = "token/device/feeder/detail"
 API_FEEDER_LOGS = "token/device/feeder/stats/log/top5"
 API_FEEDER_FOOD_OUT = "token/device/feeder/foodOut"
 API_LITTERBOX_INFO = "token/litterbox/info"
+API_LITTERBOX_C08_INFO = "token/litterbox/info/c08"
 API_LITTERBOX_LOGS = "token/litterbox/stats/log/top5"
 API_LITTERBOX_CHANGE_MODE = "token/litterbox/changeMode"
 API_LITTERBOX_ACTION_COMMAND = "token/litterbox/actionCmd"
+API_LITTERBOX_ACTION_COMMAND_V3 = "token/litterbox/actionCmd/v3"
 API_LITTERBOX_BOX_FULL_SETTING = "token/litterbox/boxFullSetting"
 API_LITTERBOX_REPLACE_GARBAGE_BAG = "token/litterbox/replaceGarbageBagCmd"
 API_SCOOPER_LOGS = "token/device/scooper/stats/log/top5"
 API_SCOOPER_LOGS_LITTERBOX = "token/litterbox/stats/log/top5"
+API_LITTERBOX_PET_WEIGHT_AUTO_UPDATE = "token/litterbox/pet/weight/autoUpdate"
+API_LITTERBOX_CAT_LITTER_SETTING = "token/litterbox/catLitterSetting"
+API_LITTERBOX_KITTY_MODEL_SWITCH = "token/litterbox/kittyModelSwitch"
+API_LITTERBOX_SAFE_TIME_SETTING = "token/litterbox/safeTimeSetting"
+API_LITTERBOX_DEEP_CLEAN_AUTO_BURIAL = "token/litterbox/deepClean/autoBurial"
+API_LITTERBOX_DEEP_CLEAN_CONTINUOUS_CLEANING = (
+    "token/litterbox/deepClean/continuousCleaning"
+)
+API_LITTERBOX_KEY_LOCK = "token/litterbox/keyLock"
+API_LITTERBOX_INDICATOR_LIGHT_SETTING = "token/litterbox/indicatorLightSetting"
+API_LITTERBOX_KEYPAD_TONE = "token/litterbox/keypadTone"
+API_LITTERBOX_STATS_DATA_COMPARE_V2 = "token/litterbox/stats/data/compare/v2"
+API_LITTERBOX_NOTICE_CONFIG_SET = "token/litterbox/noticeConfig/set"
+API_LITTERBOX_STATS_CATS = "token/litterbox/stats/cats"
+API_LITTERBOX_STATS_LOG_TOP5 = "token/litterbox/stats/log/top5"
+API_LITTERBOX_LINKED_PETS = "token/litterbox/linkedPets"
+API_LITTERBOX_CAT_LIST_SELECTABLE = "token/litterbox/cat/listSelectable"
+API_LITTERBOX_C08_WIFI_INFO = "token/litterbox/wifi/info"
+API_LITTERBOX_NOTICE_CONFIG_LIST_C08 = "token/litterbox/noticeConfig/list/c08"
+API_LITTERBOX_ABOUT_DEVICE = "token/litterbox/aboutDevice"
 
 ERROR_CODE_TOKEN_EXPIRED = 1002
 ERROR_CODE_SUCCESS = 0
@@ -82,16 +103,33 @@ PARAMETER_COMMAND = "cmd"
 PARAMETER_LEVEL = "level"
 PARAMETER_ENABLE = "enable"
 PARAMETER_FOOD_OUT_NUMBER = "footOutNum"
+PARAMETER_ACTION = "action"
+PARAMETER_BEHAVIOR = "behavior"
+PARAMETER_LITTER_TYPE = "litterType"
+PARAMETER_LOCK_STATUS = "lockStatus"
+PARAMETER_STATUS = "status"
+PARAMETER_PANEL_TONE = "panelTone"
+PARAMETER_KIND = "kind"
+PARAMETER_TIMES = "times"
+PARAMETER_SAFE_TIME = "safeTime"
+PARAMETER_NOTICE_ITEM = "noticeItem"
+PARAMETER_NOTICE_SWITCH = "noticeSwitch"
 
 RESPONSE_RETURN_CODE = "returnCode"
-RESPONSE_DATA = "data"
+RESPONSE_KEY_DATA = "data"
+RESPONSE_KEY_CATS = "cats"
+RESPONSE_KEY_WIFI_INFO = "wifiInfo"
+RESPONSE_KEY_NOTICE_CONFIGS = "noticeConfigs"
+RESPONSE_KEY_INFO = "info"
 
 DATA_KEY_TOKEN = "token"
-DATA_KEY_DEVICES = "devices"
-DATA_KEY_DEVICE_INFO = "deviceInfo"
-DATA_KEY_DEVICE_LOG_TOP5 = "deviceLogTop5"
-DATA_KEY_FEEDER_LOG_TOP5 = "feederLogTop5"
-DATA_KEY_SCOOPER_LOG_TOP5 = "scooperLogTop5"
+RESPONSE_KEY_DEVICES = "devices"
+RESPONSE_KEY_DEVICE_INFO = "deviceInfo"
+RESPONSE_KEY_COMPARE_DATA = "compareData"
+RESPONSE_KEY_DEVICE_LOG_TOP5 = "deviceLogTop5"
+RESPONSE_KEY_FEEDER_LOG_TOP5 = "feederLogTop5"
+RESPONSE_KEY_SCOOPER_LOG_TOP5 = "scooperLogTop5"
+RESPONSE_KEY_LOG_TOP5 = "scooperLogTop5"
 
 DEVICE_DETAIL_WORK_STATUS = "workStatus"
 DEVICE_DETAIL_WORK_MODE = "workModel"
@@ -108,8 +146,12 @@ DEVICE_DATA_DEVICE_TYPE = "deviceType"
 DEVICE_DATA_DEVICE_NAME = "deviceName"
 DEVICE_DATA_CURRENT_ERROR_MESSAGE = "currentErrorMessage"
 
+TYPE_NONE = "NONE"
+DEFAULT_FOOD_OUT_NUMBER = 5
+PASSWORD_MAX_LENGTH = 16
 
-class CatlinkWorkStatus(StrEnum):
+
+class CatlinkC08WorkStatus(StrEnum):
     """Work status enumeration."""
 
     IDLE = "00"
@@ -117,36 +159,84 @@ class CatlinkWorkStatus(StrEnum):
     NEED_RESET = "02"
 
 
-class CatlinkWorkModel(StrEnum):
-    """Work model enumeration."""
+class CatlinkC08WorkModel(StrEnum):
+    """C08 Work model enumeration."""
 
     AUTO = "00"
     MANUAL = "01"
-    TIME = "02"
-    EMPTY = "03"
+    SCHEDULED = "02"
 
 
-class CatlinkAction(StrEnum):
-    """Action enumeration."""
+class CatlinkC08Action(StrEnum):
+    """C08 Action enumeration."""
 
-    PAUSE = "00"
-    START = "01"
-    CLEANING = "01"
-
-
-class CatlinkBoxFullLevel(StrEnum):
-    """Box full level enumeration."""
-
-    LEVEL_1 = "LEVEL_01"
-    LEVEL_2 = "LEVEL_02"
-    LEVEL_3 = "LEVEL_03"
-    LEVEL_4 = "LEVEL_04"
+    RUN = "RUN"
+    PAUSE = "PAUSE"
+    CANCEL = "CANCEL"
 
 
-DEFAULT_FOOD_OUT_NUMBER = 5
-ENABLE_VALUE = "1"
-DISABLE_VALUE = "0"
+class CatlinkC08Behavior(StrEnum):
+    """C08 Behavior enumeration."""
 
-TYPE_NONE = "NONE"
+    CLEAN = "CLEAN"
+    PAVE = "PAVE"
 
-PASSWORD_MAX_LENGTH = 16
+
+class CatlinkC08CatLitterType(StrEnum):
+    """C08 Cat litter type enumeration."""
+
+    BENTONITE = "00"
+    MIXED = "02"
+
+
+class CatlinkC08KeyLockStatus(StrEnum):
+    """C08 Key lock setting enumeration."""
+
+    UNLOCKED = "00"
+    LOCKED = "01"
+
+
+class CatlinkC08IndicatorLightStatus(StrEnum):
+    """C08 Indicator light setting enumeration."""
+
+    CLOSED = "CLOSED"
+    ALWAYS_OPEN = "ALWAYS_OPEN"
+
+
+class CatlinkC08KeypadPanelTone(StrEnum):
+    """C08 Keypad panel tone setting enumeration."""
+
+    DISABLED = "00"
+    ENABLED = "01"
+
+
+class CatlinkC08KeypadKind(StrEnum):
+    """C08 Keypad kind enumeration."""
+
+    DEFAULT = "00"
+
+
+class CatlinkC08AutoModeSafeTimeOption(Enum):
+    """C08 Auto mode safe time option enumeration."""
+
+    MINUTES1 = 1
+    MINUTES3 = 3
+    MINUTES5 = 5
+    MINUTES7 = 7
+    MINUTES10 = 10
+    MINUTES15 = 15
+    MINUTES30 = 30
+
+
+class CatlinkC08NoticeItem(StrEnum):
+    """C08 Notice item enumeration."""
+
+    CAT_CAME = "LITTERBOX_599_CAT_CAME"
+    BOX_FULL = "LITTERBOX_599_BOX_FULL"
+    REPLACE_GARBAGE_BAG = "REPLACE_GARBAGE_BAG"
+    WASH_SCOOPER = "WASH_SCOOPER"
+    REPLACE_DEODORANT = "REPLACE_DEODORANT"
+    LITTER_NOT_ENOUGH = "LITTERBOX_599_CAT_LITTER_NOT_ENOUGH"
+    SANDBOX_NOT_ENOUGH = "LITTERBOX_599_SANDBOX_NOT_ENOUGHT"
+    ANTI_PINCH = "LITTERBOX_599_ANTI_PINCH"
+    FIRMWARE_UPDATED = "LITTERBOX_599_FIRMWARE_UPDATED"

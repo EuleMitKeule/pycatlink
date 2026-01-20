@@ -3,14 +3,14 @@
 from dataclasses import dataclass
 from typing import Any
 
-from dataclass_wizard import JSONWizard
+from dataclass_wizard import JSONWizard, json_field
 
 from .const import (
     DEFAULT_API_BASE,
     DEFAULT_LANGUAGE,
-    DEFAULT_PHONE_INTERNATIONAL_CODE,
-    CatlinkWorkModel,
-    CatlinkWorkStatus,
+    CatlinkC08NoticeItem,
+    CatlinkC08WorkModel,
+    CatlinkC08WorkStatus,
 )
 
 
@@ -20,7 +20,7 @@ class CatlinkAccountConfig:
 
     phone: str
     password: str
-    phone_international_code: str = DEFAULT_PHONE_INTERNATIONAL_CODE
+    phone_international_code: str
     api_base: str = DEFAULT_API_BASE
     language: str = DEFAULT_LANGUAGE
     token: str | None = None
@@ -44,25 +44,7 @@ class CatlinkDeviceInfo(JSONWizard):
 
 
 @dataclass
-class CatlinkDeviceDetails(JSONWizard):
-    """Device details."""
-
-    current_message: str | None
-    work_status: CatlinkWorkStatus | None
-    work_model: CatlinkWorkModel | None
-
-
-@dataclass
-class CatlinkFeederDeviceDetails(CatlinkDeviceDetails, JSONWizard):
-    """Feeder device details."""
-
-    weight: int | None
-    error: str | None
-    food_out_status: str | None
-
-
-@dataclass
-class CatlinkTimingSettings(JSONWizard):
+class CatlinkC08TimingSettings(JSONWizard):
     """Timing settings for litter box device."""
 
     id: str | None
@@ -77,7 +59,7 @@ class CatlinkTimingSettings(JSONWizard):
 
 
 @dataclass
-class CatlinkSharers(JSONWizard):
+class CatlinkC08Sharers(JSONWizard):
     """Sharers for litter box device."""
 
     id: str | None
@@ -89,7 +71,7 @@ class CatlinkSharers(JSONWizard):
 
 
 @dataclass
-class CatlinkDeviceError(JSONWizard):
+class CatlinkC08DeviceError(JSONWizard):
     """Device error information."""
 
     errkey: str | None
@@ -103,10 +85,13 @@ class CatlinkDeviceError(JSONWizard):
 
 
 @dataclass
-class CatlinkLitterBoxDeviceDetails(CatlinkDeviceDetails, JSONWizard):
+class CatlinkC08DeviceDetails(JSONWizard):
     """Litter box device details."""
 
-    device_type: Any | None
+    current_message: str | None
+    work_status: CatlinkC08WorkStatus | None
+    work_model: CatlinkC08WorkModel | None
+    device_type: str | None
     iot_id: Any | None
     device_id: str | None
     mac: str | None
@@ -126,9 +111,9 @@ class CatlinkLitterBoxDeviceDetails(CatlinkDeviceDetails, JSONWizard):
     weight: Any | None
     cat_litter_weight: float | None
     key_lock: str | None
-    timing_settings: list[CatlinkTimingSettings] | None
-    near_enable_timing: CatlinkTimingSettings | None
-    sharers: list[CatlinkSharers] | None
+    timing_settings: list[CatlinkC08TimingSettings] | None
+    near_enable_timing: CatlinkC08TimingSettings | None
+    sharers: list[CatlinkC08Sharers] | None
     quiet_enable: bool | None
     quiet_times: Any | None
     firmware_version: str | None
@@ -153,7 +138,7 @@ class CatlinkLitterBoxDeviceDetails(CatlinkDeviceDetails, JSONWizard):
     support_weight_calibration: bool | None
     empty_status: str | None
     clean_status: str | None
-    device_error_list: list[CatlinkDeviceError] | None
+    device_error_list: list[CatlinkC08DeviceError] | None
     error_jump_type: int | None
     litter_type: int | None
     toilet_use_times: Any | None
@@ -186,7 +171,7 @@ class CatlinkLitterBoxDeviceDetails(CatlinkDeviceDetails, JSONWizard):
     off_screen_duration: Any | None
     sandbox_balance: Any | None
     cat_litter_balance: Any | None
-    final_status: Any | None
+    final_status: str | None
     soft_model: Any | None
     total_clean_times: Any | None
     infrared_switch: Any | None
@@ -198,8 +183,193 @@ class CatlinkLitterBoxDeviceDetails(CatlinkDeviceDetails, JSONWizard):
     curtain_status_switch: Any | None
     experience_plan_switch: Any | None
     visual_cloud_storage_record_vo: Any | None
-    device_vip_flag: Any | None
+    device_vip_flag: bool | None
+    ccare_temp_entrance: Any | None
     ccare_countdown_timestamp: str | None
     last_heart_beat_timestamp: str | None
     high_edition: bool | None
-    ccare_temp_entrance: bool | None
+
+
+@dataclass
+class CatlinkC08DeviceStats(JSONWizard):
+    """C08 Device statistics data."""
+
+    date: str | None
+    healthStatus: str | None
+    healthStatusDescription: str | None
+    times: int | None
+    weightAvg: float | None
+    weightAvgOfYesterday: float | None
+    weightUnitTip: str | None
+    durationAvg: int | None
+    timesCompareYesterday: int | None
+    weightAvgCompareYesterday: float | None
+    durationAvgCompareYesterday: int | None
+    weightStatus: Any | None
+    healthCalcBasis: Any | None
+    weightCalcBasis: Any | None
+    healthWeekCursor: int | None
+    weightWeekCursor: int | None
+    snAvailable: bool | None
+    peed: int | None
+    pood: int | None
+
+
+@dataclass
+class CatlinkC08PetStats(JSONWizard):
+    """C08 Pet statistics information."""
+
+    id: str | None
+    petName: str | None
+    avatar: Any | None
+    attention: bool | None
+    defaultStatus: Any | None
+    petNoteCount: Any | None
+    gender: int | None
+    year: Any | None
+    age: int | None
+    month: int | None
+    birthday: int | None
+    breedId: str | None
+    breedName: str | None
+    weight: float | None
+    weightUnit: Any | None
+    owner: bool | None
+    petDeviceCount: int | None
+    collarVersion: Any | None
+    collarMac: Any | None
+    masterUserName: Any | None
+    liveStatus: Any | None
+    meetDate: Any | None
+    meetDateString: Any | None
+    meedDays: int | None
+    passDate: Any | None
+    passDateString: Any | None
+    passDays: int | None
+    zodiac: Any | None
+
+
+@dataclass
+class CatlinkC08Log(JSONWizard):
+    """C08 Log information."""
+
+    id: str | None
+    type: str | None
+    time: str | None
+    event: str | None
+    unrecognized: bool | None
+    first_section: str | None
+    second_section: str | None
+    modify_flag: bool | None
+    sn_flag: int | None
+    pet_id: str | None
+
+
+@dataclass
+class CatlinkC08LinkedPet(JSONWizard):
+    """C08 Linked pet information."""
+
+    pet_id: str | None
+    avatar: Any | None
+    gender: str | None
+    birthday: int | None
+    pet_name: str | None
+    has_face_info: Any | None
+    item_enable: bool | None
+    weight: str | None
+    breed_id: str | None
+    breed_name: Any | None
+    create_time: int | None
+    master: bool | None
+
+
+@dataclass
+class CatlinkC08SelectablePet(JSONWizard):
+    """C08 Selectable pet information."""
+
+    id: str | None
+    type: int | None
+    pet_name: str | None
+    breed_id: str | None
+    avatar: Any | None
+    gender: int | None
+    birthday: int | None
+    birthday_string: str | None
+    weight: float | None
+    pet_food_id: Any | None
+    live_status: Any | None
+    memory_bg_url: Any | None
+    meet_date: Any | None
+    pass_date: Any | None
+    delete_flag: int | None
+    create_time: int | None
+    update_time: int | None
+    sn_factor: int | None
+    body_type: int | None
+    pet_food_name: Any | None
+    master: Any | None
+    owner: int | None
+    age: int | None
+    breed_name: str | None
+    avatar_file: Any | None
+    user_id: Any | None
+    user_nickname: Any | None
+    device_ids: Any | None
+    feeder_ids: Any | None
+    wecare_ids: Any | None
+    camera_ids: Any | None
+    pure_ids: Any | None
+    collar_ids: Any | None
+    litterbox_ids: Any | None
+    purepro_ids: Any | None
+    feederpro_ids: Any | None
+    month: int | None
+    collars_count: int | None
+    selected: bool | None
+    default_status: Any | None
+    weight_str: Any | None
+    report: Any | None
+    unit: Any | None
+    enabled_collar: Any | None
+    meet_date_string: Any | None
+    meed_days: int | None
+    pass_date_string: Any | None
+    pass_days: int | None
+    zodiac: Any | None
+    hello_text: Any | None
+    have_data_2021: Any | None = json_field(keys="haveData2021")
+
+
+@dataclass
+class CatlinkC08WifiInfo(JSONWizard):
+    """C08 Wifi information."""
+
+    rssi: str | None
+    wifi_name: str | None
+    wifi_status: str | None
+    wifi_signal_percent: int | None
+    band: Any | None
+
+
+@dataclass
+class CatlinkC08NoticeConfig(JSONWizard):
+    """C08 Notice configuration."""
+
+    notice_item: CatlinkC08NoticeItem | None
+    notice_item_name: str | None
+    notice_switch: bool | None
+    disabled: bool | None
+
+
+@dataclass
+class CatlinkC08AboutDevice(JSONWizard):
+    """C08 About device information."""
+
+    device_name: str | None
+    model: str | None
+    sn: Any | None
+    mac: str | None
+    firmware_version: Any | None
+    wifi_single: Any | None
+    care_start: int | None
+    care_end: int | None
