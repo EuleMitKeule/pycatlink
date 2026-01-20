@@ -166,9 +166,7 @@ class CatlinkC08Device(CatlinkDevice):
 
         return self._about_device
 
-    async def refresh(self) -> None:
-        await super().refresh()
-
+    async def refresh_details(self) -> None:
         response = await self._client.request_with_auto_login(
             path=API_LITTERBOX_C08_INFO,
             method=HttpMethod.GET,
@@ -180,6 +178,11 @@ class CatlinkC08Device(CatlinkDevice):
         self._device_details = CatlinkC08DeviceDetails.from_dict(
             response.get(RESPONSE_KEY_DATA, {}).get(RESPONSE_KEY_DEVICE_INFO, {})
         )
+
+    async def refresh(self) -> None:
+        await super().refresh()
+
+        await self.refresh_details()
 
         response = await self._client.request_with_auto_login(
             path=API_LITTERBOX_STATS_LOG_TOP5,
