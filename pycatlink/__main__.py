@@ -183,31 +183,31 @@ async def device(
         raise typer.Exit(code=0)
 
     typer.echo(f"Details for device ID {device_id}:")
-    typer.echo(await device.device_details)
+    typer.echo(device.device_details)
 
     typer.echo(f"Stats for device ID {device_id}:")
-    typer.echo(await device.device_stats)
+    typer.echo(device.device_stats)
 
     typer.echo(f"Logs for device ID {device_id}:")
-    typer.echo(await device.device_logs)
+    typer.echo(device.device_logs)
 
     typer.echo(f"Pet stats for device ID {device_id}:")
-    typer.echo(await device.pet_stats)
+    typer.echo(device.pet_stats)
 
     typer.echo(f"Linked pets for device ID {device_id}:")
-    typer.echo(await device.linked_pets)
+    typer.echo(device.linked_pets)
 
     typer.echo(f"Selectable pets for device ID {device_id}:")
-    typer.echo(await device.selectable_pets)
+    typer.echo(device.selectable_pets)
 
     typer.echo(f"WiFi info for device ID {device_id}:")
-    typer.echo(await device.wifi_info)
+    typer.echo(device.wifi_info)
 
     typer.echo(f"Notice configurations for device ID {device_id}:")
-    typer.echo(await device.notice_configs)
+    typer.echo(device.notice_configs)
 
     typer.echo(f"About device information for device ID {device_id}:")
-    typer.echo(await device.about_device)
+    typer.echo(device.about_device)
 
 
 if __name__ == "__main__":

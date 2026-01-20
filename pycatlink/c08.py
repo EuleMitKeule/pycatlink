@@ -349,7 +349,7 @@ class CatlinkC08Device(CatlinkDevice):
             },
         )
 
-    async def set_pet_weigth_auto_update(self, enable: bool) -> None:
+    async def set_pet_weight_auto_update(self, enable: bool) -> None:
         """Enable or disable automatic pet weight update."""
         await self._issue_command(
             path=API_LITTERBOX_PET_WEIGHT_AUTO_UPDATE,
@@ -417,21 +417,25 @@ class CatlinkC08Device(CatlinkDevice):
             },
         )
 
-    async def set_child_lock(self, lock_status: CatlinkC08KeyLockStatus) -> None:
+    async def set_child_lock(self, enable: bool) -> None:
         """Enable or disable child lock."""
         await self._issue_command(
             path=API_LITTERBOX_KEY_LOCK,
             parameters={
-                PARAMETER_LOCK_STATUS: lock_status,
+                PARAMETER_LOCK_STATUS: CatlinkC08KeyLockStatus.LOCKED
+                if enable
+                else CatlinkC08KeyLockStatus.UNLOCKED,
             },
         )
 
-    async def set_indicator_light(self, status: CatlinkC08IndicatorLightStatus) -> None:
+    async def set_indicator_light(self, enable: bool) -> None:
         """Enable or disable indicator light."""
         await self._issue_command(
             path=API_LITTERBOX_INDICATOR_LIGHT_SETTING,
             parameters={
-                PARAMETER_STATUS: status,
+                PARAMETER_STATUS: CatlinkC08IndicatorLightStatus.ALWAYS_OPEN
+                if enable
+                else CatlinkC08IndicatorLightStatus.CLOSED,
             },
         )
 
