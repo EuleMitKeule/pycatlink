@@ -1,0 +1,219 @@
+{
+  "entity": {
+    "sensor": {
+      "current_message": {
+        "default": "mdi:message-text"
+      },
+      "work_status": {
+        "default": "mdi:state-machine",
+        "state": {
+          "idle": "mdi:sleep",
+          "running": "mdi:cog",
+          "need_reset": "mdi:alert-circle"
+        }
+      },
+      "cat_litter_weight": {
+        "default": "mdi:weight-kilogram"
+      },
+      "last_heartbeat": {
+        "default": "mdi:heart-pulse"
+      },
+      "litter_countdown": {
+        "default": "mdi:timer-sand"
+      },
+      "induction_times": {
+        "default": "mdi:counter"
+      },
+      "manual_times": {
+        "default": "mdi:hand-back-right"
+      },
+      "deodorant_countdown": {
+        "default": "mdi:air-filter"
+      },
+      "timezone_id": {
+        "default": "mdi:map-clock"
+      },
+      "cat_litter_pave_second": {
+        "default": "mdi:rake"
+      },
+      "timer_times": {
+        "default": "mdi:clock-check"
+      },
+      "clear_times": {
+        "default": "mdi:broom"
+      },
+      "full_times": {
+        "default": "mdi:delete-alert"
+      },
+      "full_close_times": {
+        "default": "mdi:delete-clock"
+      },
+      "box_full_sensitivity": {
+        "default": "mdi:tune"
+      },
+      "device_time": {
+        "default": "mdi:clock-digital"
+      },
+      "wifi_rssi": {
+        "default": "mdi:wifi-strength-outline"
+      },
+      "wifi_name": {
+        "default": "mdi:wifi"
+      },
+      "wifi_signal_percent": {
+        "default": "mdi:wifi-strength-2"
+      },
+      "pet_weight": {
+        "default": "mdi:weight-kilogram"
+      },
+      "pet_age": {
+        "default": "mdi:cake-variant"
+      },
+      "pet_gender": {
+        "default": "mdi:gender-male-female",
+        "state": {
+          "male": "mdi:gender-male",
+          "female": "mdi:gender-female",
+          "unknown": "mdi:help-circle"
+        }
+      },
+      "pet_breed": {
+        "default": "mdi:cat"
+      },
+      "pet_birthday": {
+        "default": "mdi:calendar-star"
+      },
+      "pet_type": {
+        "default": "mdi:paw",
+        "state": {
+          "cat": "mdi:cat",
+          "dog": "mdi:dog",
+          "other": "mdi:paw"
+        }
+      },
+      "pet_body_type": {
+        "default": "mdi:scale-bathroom",
+        "state": {
+          "very_thin": "mdi:weight-lifter",
+          "thin": "mdi:scale-bathroom",
+          "normal": "mdi:scale-balance",
+          "heavy": "mdi:food-drumstick",
+          "very_heavy": "mdi:food-turkey"
+        }
+      }
+    },
+    "binary_sensor": {
+      "online": {
+        "default": "mdi:wifi-off",
+        "state": {
+          "on": "mdi:wifi-check"
+        }
+      },
+      "quiet_enable": {
+        "default": "mdi:volume-off",
+        "state": {
+          "on": "mdi:sleep"
+        }
+      }
+    },
+    "button": {
+      "start_litter_leveling": {
+        "default": "mdi:rake"
+      },
+      "pause_litter_leveling": {
+        "default": "mdi:pause"
+      },
+      "start_cleaning": {
+        "default": "mdi:broom"
+      },
+      "pause_cleaning": {
+        "default": "mdi:pause"
+      },
+      "cancel_cleaning": {
+        "default": "mdi:close-circle"
+      },
+      "refresh": {
+        "default": "mdi:refresh"
+      }
+    },
+    "select": {
+      "work_model": {
+        "default": "mdi:cog",
+        "state": {
+          "automatic": "mdi:play-circle",
+          "manual": "mdi:hand-back-right",
+          "scheduled": "mdi:calendar-clock"
+        }
+      },
+      "auto_mode_safe_time": {
+        "default": "mdi:timer-cog"
+      },
+      "cat_litter_type": {
+        "default": "mdi:grain",
+        "state": {
+          "bentonite": "mdi:tangram",
+          "mixed": "mdi:texture-box"
+        }
+      },
+      "quiet_mode_start_time": {
+        "default": "mdi:clock-start"
+      },
+      "quiet_mode_end_time": {
+        "default": "mdi:clock-end"
+      }
+    },
+    "switch": {
+      "auto_burial": {
+        "default": "mdi:shovel"
+      },
+      "child_lock": {
+        "default": "mdi:lock"
+      },
+      "continuous_cleaning": {
+        "default": "mdi:autorenew"
+      },
+      "indicator_light": {
+        "default": "mdi:lightbulb"
+      },
+      "keypad_tone": {
+        "default": "mdi:volume-high"
+      },
+      "kitty_model": {
+        "default": "mdi:cat"
+      },
+      "pet_weight_auto_update": {
+        "default": "mdi:update"
+      },
+      "quiet_mode": {
+        "default": "mdi:sleep"
+      },
+      "notification_cat_came": {
+        "default": "mdi:bell"
+      },
+      "notification_box_full": {
+        "default": "mdi:bell"
+      },
+      "notification_replace_garbage_bag": {
+        "default": "mdi:bell"
+      },
+      "notification_wash_scooper": {
+        "default": "mdi:bell"
+      },
+      "notification_replace_deodorant": {
+        "default": "mdi:bell"
+      },
+      "notification_litter_not_enough": {
+        "default": "mdi:bell"
+      },
+      "notification_sandbox_not_enough": {
+        "default": "mdi:bell"
+      },
+      "notification_anti_pinch": {
+        "default": "mdi:bell"
+      },
+      "notification_firmware_updated": {
+        "default": "mdi:bell"
+      }
+    }
+  }
+}

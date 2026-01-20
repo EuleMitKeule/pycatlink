@@ -115,7 +115,7 @@ class CatlinkC08DeviceDetails(JSONWizard):
     near_enable_timing: CatlinkC08TimingSettings | None
     sharers: list[CatlinkC08Sharers] | None
     quiet_enable: bool | None
-    quiet_times: Any | None
+    quiet_times: str | None
     firmware_version: str | None
     model: str | None
     timezone_id: str | None

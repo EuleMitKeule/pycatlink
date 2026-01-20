@@ -7,6 +7,7 @@ from pycatlink.account import CatlinkAccount
 from pycatlink.c08 import CatlinkC08Device
 from pycatlink.device import CatlinkDevice
 from pycatlink.exceptions import CatlinkError
+from pycatlink.models import CatlinkPet
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -34,10 +35,12 @@ class CatlinkDataUpdateCoordinator(DataUpdateCoordinator[CatlinkCoordinatorData]
         )
         self.account = account
         self.devices: list[CatlinkDevice] = []
+        self.pets: list = []
 
     async def async_config_entry_first_refresh(self) -> None:
         """Fetch initial data."""
         self.devices = await self.account.get_devices()
+        self.pets = await self.account.get_pets()
         await super().async_config_entry_first_refresh()
 
     async def _async_update_data(self) -> CatlinkCoordinatorData:
@@ -56,23 +59,19 @@ class CatlinkDataUpdateCoordinator(DataUpdateCoordinator[CatlinkCoordinatorData]
                     )
                     continue
 
-                _LOGGER.info(
-                    "Performing update for device %s",
-                    device.device_info.id,
-                )
-
                 await device.refresh()
 
-                _LOGGER.info(
-                    "Updated device %s",
-                    device.device_info.id,
-                )
-
                 data[device.device_info.id] = device
+
+            pets_data: dict[str, CatlinkPet] = {}
+            for pet in self.pets:
+                if pet.id:
+                    pets_data[pet.id] = pet
 
             return CatlinkCoordinatorData(
                 account_config=self.account.config,
                 devices=data,
+                pets=pets_data,
             )
         except CatlinkError as err:
             raise UpdateFailed(f"Error communicating with CatLink API: {err}") from err

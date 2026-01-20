@@ -46,10 +46,10 @@
                 "name": "Restzeit Deodorant"
             },
             "induction_times": {
-                "name": "Anzahl Reinigungen"
+                "name": "Reinigungszyklen"
             },
             "manual_times": {
-                "name": "Anzahl manuelle Reinigungen"
+                "name": "Manuelle Zyklen"
             },
             "timezone_id": {
                 "name": "Zeitzone"
@@ -58,7 +58,7 @@
                 "name": "Streuglättungsdauer"
             },
             "timer_times": {
-                "name": "Timer-Zyklen"
+                "name": "Timerzyklen"
             },
             "clear_times": {
                 "name": "Leerungszyklen"
@@ -70,15 +70,56 @@
                 "name": "Behälter voll Schließungen"
             },
             "box_full_sensitivity": {
-                "name": "Behälter-voll Empfindlichkeit"
+                "name": "Behälter voll Empfindlichkeit"
+            },
+            "pet_weight": {
+                "name": "Gewicht"
+            },
+            "pet_age": {
+                "name": "Alter"
+            },
+            "pet_gender": {
+                "name": "Geschlecht",
+                "state": {
+                    "male": "Männlich",
+                    "female": "Weiblich",
+                    "unknown": "Unbekannt"
+                }
+            },
+            "pet_breed": {
+                "name": "Rasse"
+            },
+            "pet_birthday": {
+                "name": "Geburtstag"
+            },
+            "pet_type": {
+                "name": "Tierart",
+                "state": {
+                    "cat": "Katze",
+                    "dog": "Hund",
+                    "other": "Andere"
+                }
+            },
+            "pet_body_type": {
+                "name": "Körpertyp",
+                "state": {
+                    "very_thin": "Sehr dünn",
+                    "thin": "Dünn",
+                    "normal": "Normal",
+                    "heavy": "Schwer",
+                    "very_heavy": "Sehr schwer"
+                }
+            },
+            "pet_days_since_adoption": {
+                "name": "Tage seit Adoption"
+            },
+            "pet_adoption_date": {
+                "name": "Adoptionsdatum"
             }
         },
         "binary_sensor": {
             "online": {
                 "name": "Verbindungsstatus"
-            },
-            "quiet_enable": {
-                "name": "Ruhemodus"
             }
         },
         "button": {
@@ -130,15 +171,15 @@
                 }
             },
             "quiet_mode_start_time": {
-                "name": "Ruhemodus Startzeit"
+                "name": "Nicht stören Startzeit"
             },
             "quiet_mode_end_time": {
-                "name": "Ruhemodus Endzeit"
+                "name": "Nicht stören Endzeit"
             }
         },
         "switch": {
             "auto_burial": {
-                "name": "Auto-Bestattung"
+                "name": "Weichen Stuhl eingraben"
             },
             "child_lock": {
                 "name": "Kindersicherung"
@@ -153,40 +194,40 @@
                 "name": "Tastenton"
             },
             "kitty_model": {
-                "name": "Kätzchen-Modell"
+                "name": "Kittenmodus"
             },
             "pet_weight_auto_update": {
                 "name": "Automatische Gewichtsaktualisierung"
             },
             "quiet_mode": {
-                "name": "Ruhemodus"
+                "name": "Nicht stören"
             },
             "notification_cat_came": {
-                "name": "Katze gekommen Benachrichtigung"
+                "name": "Benachrichtigung bei Katzenbesuch"
             },
             "notification_box_full": {
-                "name": "Kiste voll Benachrichtigung"
+                "name": "Benachrichtigung bei vollem Abfallbehälter"
             },
             "notification_replace_garbage_bag": {
-                "name": "Müllbeutel ersetzen Benachrichtigung"
+                "name": "Benachrichtigung zum Wechseln des Müllbeutels"
             },
             "notification_wash_scooper": {
-                "name": "Schaufel waschen Benachrichtigung"
+                "name": "Benachrichtigung zum Waschen der Schaufel"
             },
             "notification_replace_deodorant": {
-                "name": "Deodorant ersetzen Benachrichtigung"
+                "name": "Benachrichtigung zum Wechseln des Deodorants"
             },
             "notification_litter_not_enough": {
-                "name": "Streue nicht genug Benachrichtigung"
+                "name": "Benachrichtigung bei wenig Streu"
             },
             "notification_sandbox_not_enough": {
-                "name": "Sandkasten nicht genug Benachrichtigung"
+                "name": "Benachrichtigung bei niedrigem Streupegel"
             },
             "notification_anti_pinch": {
-                "name": "Anti-Quetsch Benachrichtigung"
+                "name": "Benachrichtigung bei Quetschschutz-Auslösung"
             },
             "notification_firmware_updated": {
-                "name": "Firmware aktualisiert Benachrichtigung"
+                "name": "Benachrichtigung bei Firmware-Update"
             }
         }
     }

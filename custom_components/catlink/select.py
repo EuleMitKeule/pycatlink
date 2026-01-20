@@ -126,9 +126,9 @@ SELECTS: tuple[CatlinkSelectEntityDescription, ...] = (
         entity_category=EntityCategory.CONFIG,
         options=TIME_OPTIONS,
         current_fn=lambda data: (
-            data.device_details.quiet_times[0]
+            data.device_details.quiet_times.split("-")[0]
             if data.device_details.quiet_times
-            and len(data.device_details.quiet_times) > 0
+            and "-" in data.device_details.quiet_times
             else None
         ),
         select_fn=lambda device, option: device.set_quiet_mode(
@@ -136,9 +136,9 @@ SELECTS: tuple[CatlinkSelectEntityDescription, ...] = (
             if device.device_details.quiet_mode_enable is not None
             else False,
             datetime.time.fromisoformat(option),
-            datetime.time.fromisoformat(device.device_details.quiet_times[1])
+            datetime.time.fromisoformat(device.device_details.quiet_times.split("-")[1])
             if device.device_details.quiet_times
-            and len(device.device_details.quiet_times) > 1
+            and "-" in device.device_details.quiet_times
             else time(8, 0),
         ),
     ),
@@ -148,18 +148,18 @@ SELECTS: tuple[CatlinkSelectEntityDescription, ...] = (
         entity_category=EntityCategory.CONFIG,
         options=TIME_OPTIONS,
         current_fn=lambda data: (
-            data.device_details.quiet_times[1]
+            data.device_details.quiet_times.split("-")[1]
             if data.device_details.quiet_times
-            and len(data.device_details.quiet_times) > 1
+            and "-" in data.device_details.quiet_times
             else None
         ),
         select_fn=lambda device, option: device.set_quiet_mode(
             device.device_details.quiet_mode_enable
             if device.device_details.quiet_mode_enable is not None
             else False,
-            datetime.time.fromisoformat(device.device_details.quiet_times[0])
+            datetime.time.fromisoformat(device.device_details.quiet_times.split("-")[0])
             if device.device_details.quiet_times
-            and len(device.device_details.quiet_times) > 0
+            and "-" in device.device_details.quiet_times
             else time(22, 0),
             datetime.time.fromisoformat(option),
         ),

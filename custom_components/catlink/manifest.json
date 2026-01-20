@@ -6,7 +6,7 @@
   "documentation": "https://github.com/EuleMitKeule/pycatlink",
   "issue_tracker": "https://github.com/EuleMitKeule/pycatlink/issues",
   "requirements": [
-    "pycatlink==1.0.0a9"
+    "pycatlink==1.0.0a10"
   ],
   "codeowners": [
     "@EuleMitKeule"

@@ -40,45 +40,98 @@
                 "name": "Last heartbeat"
             },
             "litter_countdown": {
-                "name": "Litter countdown"
+                "name": "Litter days remaining"
             },
             "induction_times": {
-                "name": "Induction times"
+                "name": "Auto clean count"
             },
             "manual_times": {
-                "name": "Manual times"
+                "name": "Manual clean count"
             },
             "deodorant_countdown": {
-                "name": "Deodorant countdown"
+                "name": "Deodorant days remaining"
             },
             "timezone_id": {
                 "name": "Timezone"
             },
             "cat_litter_pave_second": {
-                "name": "Litter pave duration"
+                "name": "Litter leveling duration"
             },
             "timer_times": {
-                "name": "Timer cycles"
+                "name": "Scheduled clean count"
             },
             "clear_times": {
-                "name": "Clear cycles"
+                "name": "Total clean count"
             },
             "full_times": {
-                "name": "Full bin count"
+                "name": "Waste bin full count"
             },
             "full_close_times": {
-                "name": "Full bin close count"
+                "name": "Waste bin full close count"
             },
             "box_full_sensitivity": {
-                "name": "Full bin sensitivity"
+                "name": "Waste bin full sensitivity"
+            },
+            "device_time": {
+                "name": "Device time"
+            },
+            "wifi_rssi": {
+                "name": "Wi-Fi signal strength"
+            },
+            "wifi_name": {
+                "name": "Wi-Fi network name"
+            },
+            "wifi_signal_percent": {
+                "name": "Wi-Fi signal percentage"
+            },
+            "pet_weight": {
+                "name": "Weight"
+            },
+            "pet_age": {
+                "name": "Age"
+            },
+            "pet_gender": {
+                "name": "Gender",
+                "state": {
+                    "male": "Male",
+                    "female": "Female",
+                    "unknown": "Unknown"
+                }
+            },
+            "pet_breed": {
+                "name": "Breed"
+            },
+            "pet_birthday": {
+                "name": "Birthday"
+            },
+            "pet_type": {
+                "name": "Type",
+                "state": {
+                    "cat": "Cat",
+                    "dog": "Dog",
+                    "other": "Other"
+                }
+            },
+            "pet_body_type": {
+                "name": "Body type",
+                "state": {
+                    "very_thin": "Very thin",
+                    "thin": "Thin",
+                    "normal": "Normal",
+                    "heavy": "Heavy",
+                    "very_heavy": "Very heavy"
+                }
+            },
+            "pet_days_since_adoption": {
+                "name": "Days since adoption"
+            },
+            "pet_adoption_date": {
+                "name": "Adoption date"
             }
         },
         "binary_sensor": {
             "online": {
                 "name": "Online"
-            },
-            "quiet_enable": {
-                "name": "Quiet mode"
             }
         },
         "button": {
@@ -130,15 +183,15 @@
                 }
             },
             "quiet_mode_start_time": {
-                "name": "Quiet mode start time"
+                "name": "Do not disturb start time"
             },
             "quiet_mode_end_time": {
-                "name": "Quiet mode end time"
+                "name": "Do not disturb end time"
             }
         },
         "switch": {
             "auto_burial": {
-                "name": "Auto burial"
+                "name": "Soft stool burial"
             },
             "child_lock": {
                 "name": "Child lock"
@@ -150,43 +203,43 @@
                 "name": "Indicator light"
             },
             "keypad_tone": {
-                "name": "Keypad tone"
+                "name": "Button sound"
             },
             "kitty_model": {
-                "name": "Kitty model"
+                "name": "Kitten mode"
             },
             "pet_weight_auto_update": {
-                "name": "Pet weight auto update"
+                "name": "Auto update pet weight"
             },
             "quiet_mode": {
-                "name": "Quiet mode"
+                "name": "Do not disturb"
             },
             "notification_cat_came": {
-                "name": "Cat came notification"
+                "name": "Notify when cat visited"
             },
             "notification_box_full": {
-                "name": "Box full notification"
+                "name": "Notify when waste bin full"
             },
             "notification_replace_garbage_bag": {
-                "name": "Replace garbage bag notification"
+                "name": "Notify when waste bag needs replacing"
             },
             "notification_wash_scooper": {
-                "name": "Wash scooper notification"
+                "name": "Notify when scooper needs washing"
             },
             "notification_replace_deodorant": {
-                "name": "Replace deodorant notification"
+                "name": "Notify when deodorant needs replacing"
             },
             "notification_litter_not_enough": {
-                "name": "Litter not enough notification"
+                "name": "Notify when litter is low"
             },
             "notification_sandbox_not_enough": {
-                "name": "Sandbox not enough notification"
+                "name": "Notify when litter level is low"
             },
             "notification_anti_pinch": {
-                "name": "Anti-pinch notification"
+                "name": "Notify on anti-pinch trigger"
             },
             "notification_firmware_updated": {
-                "name": "Firmware updated notification"
+                "name": "Notify on firmware update"
             }
         }
     }

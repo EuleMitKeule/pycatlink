@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 
 from pycatlink.account import CatlinkAccount
 from pycatlink.device import CatlinkDevice
-from pycatlink.models import CatlinkAccountConfig
+from pycatlink.models import CatlinkAccountConfig, CatlinkPet
 
 from homeassistant.config_entries import ConfigEntry
 
@@ -29,6 +29,7 @@ class CatlinkCoordinatorData:
 
     account_config: CatlinkAccountConfig
     devices: dict[str, CatlinkDevice]
+    pets: dict[str, CatlinkPet]
 
 
 type CatlinkConfigEntry = ConfigEntry[CatlinkData]
