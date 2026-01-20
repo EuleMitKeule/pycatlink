@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import datetime, time
+from datetime import time
 from typing import Any
 
 from pycatlink.c08 import CatlinkC08Device
@@ -21,6 +21,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import CatlinkLitterBoxWorkModel
+from .coordinator import CatlinkDataUpdateCoordinator
 from .entity import CatlinkC08EntityDescription, CatlinkEntity, CatlinkEntityDescription
 from .models import CatlinkConfigEntry
 
@@ -70,7 +71,7 @@ class CatlinkC08SelectEntityDescription(
 ):
     """Describes a CatLink C08 select entity."""
 
-    current_fn: Callable[[CatlinkC08Device], str | None]
+    current_fn: Callable[[CatlinkC08Device], str | None]  # type: ignore[assignment]
 
 
 SELECTS: tuple[CatlinkSelectEntityDescription, ...] = (
@@ -135,8 +136,8 @@ SELECTS: tuple[CatlinkSelectEntityDescription, ...] = (
             device.device_details.quiet_mode_enable
             if device.device_details.quiet_mode_enable is not None
             else False,
-            datetime.time.fromisoformat(option),
-            datetime.time.fromisoformat(device.device_details.quiet_times.split("-")[1])
+            time.fromisoformat(option),
+            time.fromisoformat(device.device_details.quiet_times.split("-")[1])
             if device.device_details.quiet_times
             and "-" in device.device_details.quiet_times
             else time(8, 0),
@@ -157,11 +158,11 @@ SELECTS: tuple[CatlinkSelectEntityDescription, ...] = (
             device.device_details.quiet_mode_enable
             if device.device_details.quiet_mode_enable is not None
             else False,
-            datetime.time.fromisoformat(device.device_details.quiet_times.split("-")[0])
+            time.fromisoformat(device.device_details.quiet_times.split("-")[0])
             if device.device_details.quiet_times
             and "-" in device.device_details.quiet_times
             else time(22, 0),
-            datetime.time.fromisoformat(option),
+            time.fromisoformat(option),
         ),
     ),
 )
@@ -190,7 +191,7 @@ class CatlinkSelect(CatlinkEntity, SelectEntity):
 
     def __init__(
         self,
-        coordinator,
+        coordinator: CatlinkDataUpdateCoordinator,
         device_id: str,
         description: CatlinkSelectEntityDescription,
     ) -> None:

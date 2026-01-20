@@ -44,8 +44,8 @@ class CatlinkC08SwitchEntityDescription(
 ):
     """Describes a CatLink C08 switch entity."""
 
-    is_on_fn: Callable[[CatlinkC08Device], bool | None]
-    set_fn: Callable[[CatlinkC08Device, bool], Awaitable[None]]
+    is_on_fn: Callable[[CatlinkC08Device], bool | None]  # type: ignore[assignment]
+    set_fn: Callable[[CatlinkC08Device, bool], Awaitable[None]]  # type: ignore[assignment]
 
 
 SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
@@ -109,10 +109,12 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         set_fn=lambda device, enable: device.set_quiet_mode(
             enable,
             time.fromisoformat(device.device_details.quiet_times.split("-")[0])
-            if device.device_details.quiet_times and "-" in device.device_details.quiet_times
+            if device.device_details.quiet_times
+            and "-" in device.device_details.quiet_times
             else time(22, 0),
             time.fromisoformat(device.device_details.quiet_times.split("-")[1])
-            if device.device_details.quiet_times and "-" in device.device_details.quiet_times
+            if device.device_details.quiet_times
+            and "-" in device.device_details.quiet_times
             else time(8, 0),
         ),
     ),
@@ -121,16 +123,20 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_cat_came",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.CAT_CAME
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item == CatlinkC08NoticeItem.CAT_CAME
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.CAT_CAME, enable
         ),
@@ -140,16 +146,20 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_box_full",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.BOX_FULL
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item == CatlinkC08NoticeItem.BOX_FULL
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.BOX_FULL, enable
         ),
@@ -159,16 +169,21 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_replace_garbage_bag",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.REPLACE_GARBAGE_BAG
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item
+                            == CatlinkC08NoticeItem.REPLACE_GARBAGE_BAG
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.REPLACE_GARBAGE_BAG, enable
         ),
@@ -178,16 +193,20 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_wash_scooper",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.WASH_SCOOPER
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item == CatlinkC08NoticeItem.WASH_SCOOPER
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.WASH_SCOOPER, enable
         ),
@@ -197,16 +216,21 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_replace_deodorant",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.REPLACE_DEODORANT
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item
+                            == CatlinkC08NoticeItem.REPLACE_DEODORANT
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.REPLACE_DEODORANT, enable
         ),
@@ -216,16 +240,21 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_litter_not_enough",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.LITTER_NOT_ENOUGH
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item
+                            == CatlinkC08NoticeItem.LITTER_NOT_ENOUGH
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.LITTER_NOT_ENOUGH, enable
         ),
@@ -235,16 +264,21 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_sandbox_not_enough",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.SANDBOX_NOT_ENOUGH
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item
+                            == CatlinkC08NoticeItem.SANDBOX_NOT_ENOUGH
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.SANDBOX_NOT_ENOUGH, enable
         ),
@@ -254,16 +288,20 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_anti_pinch",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.ANTI_PINCH
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item == CatlinkC08NoticeItem.ANTI_PINCH
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.ANTI_PINCH, enable
         ),
@@ -273,16 +311,20 @@ SWITCHES: tuple[CatlinkSwitchEntityDescription, ...] = (
         translation_key="notification_firmware_updated",
         entity_category=EntityCategory.CONFIG,
         is_on_fn=lambda device: (
-            notice_config := next(
+            bool(
                 (
-                    item
-                    for item in device.notice_configs
-                    if item.notice_item == CatlinkC08NoticeItem.FIRMWARE_UPDATED
-                ),
-                None,
+                    notice_config := next(
+                        (
+                            item
+                            for item in device.notice_configs
+                            if item.notice_item == CatlinkC08NoticeItem.FIRMWARE_UPDATED
+                        ),
+                        None,
+                    )
+                )
+                and notice_config.notice_switch
             )
-        )
-        and notice_config.notice_switch,
+        ),
         set_fn=lambda device, enable: device.set_notification(
             CatlinkC08NoticeItem.FIRMWARE_UPDATED, enable
         ),
@@ -333,9 +375,8 @@ class CatlinkSwitch(CatlinkEntity, SwitchEntity):
         await self.entity_description.set_fn(self._device, True)
         self._attr_is_on = True
         self.async_write_ha_state()
-        # await self.coordinator.async_request_refresh()
 
-        async def _request_refresh(_):
+        async def _request_refresh(_: Any) -> None:
             await self.coordinator.async_request_refresh()
 
         async_call_later(self.hass, 10, _request_refresh)
@@ -345,9 +386,8 @@ class CatlinkSwitch(CatlinkEntity, SwitchEntity):
         await self.entity_description.set_fn(self._device, False)
         self._attr_is_on = False
         self.async_write_ha_state()
-        # await self.coordinator.async_request_refresh()
 
-        async def _request_refresh(_):
+        async def _request_refresh(_: Any) -> None:
             await self.coordinator.async_request_refresh()
 
         async_call_later(self.hass, 10, _request_refresh)

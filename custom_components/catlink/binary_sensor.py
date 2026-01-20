@@ -17,6 +17,7 @@ from homeassistant.const import EntityCategory
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
+from .coordinator import CatlinkDataUpdateCoordinator
 from .entity import CatlinkC08EntityDescription, CatlinkEntity, CatlinkEntityDescription
 from .models import CatlinkConfigEntry
 
@@ -36,7 +37,7 @@ class CatlinkC08BinarySensorEntityDescription(
 ):
     """Describes a CatLink C08 binary sensor entity."""
 
-    is_on_fn: Callable[[CatlinkC08Device], bool | None]
+    is_on_fn: Callable[[CatlinkC08Device], bool | None]  # type: ignore[assignment]
 
 
 BINARY_SENSORS: tuple[CatlinkBinarySensorEntityDescription, ...] = (
@@ -73,7 +74,7 @@ class CatlinkBinarySensor(CatlinkEntity, BinarySensorEntity):
 
     def __init__(
         self,
-        coordinator,
+        coordinator: CatlinkDataUpdateCoordinator,
         device_id: str,
         description: CatlinkBinarySensorEntityDescription,
     ) -> None:

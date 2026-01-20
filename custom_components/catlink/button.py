@@ -31,7 +31,7 @@ class CatlinkC08ButtonEntityDescription(
 ):
     """Describes a CatLink C08 button entity."""
 
-    press_fn: Callable[[CatlinkC08Device], Awaitable[None]]
+    press_fn: Callable[[CatlinkC08Device], Awaitable[None]]  # type: ignore[assignment]
 
 
 BUTTONS: tuple[CatlinkButtonEntityDescription, ...] = (

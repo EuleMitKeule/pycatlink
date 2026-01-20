@@ -69,7 +69,7 @@ class CatlinkEntity(CoordinatorEntity[CatlinkDataUpdateCoordinator]):
                     self._device.device_details.firmware_version
                 )
 
-        self._attr_device_info = DeviceInfo(**device_info_dict)
+        self._attr_device_info = DeviceInfo(**device_info_dict)  # type: ignore[typeddict-item]
 
     @property
     def _device(self) -> CatlinkDevice:

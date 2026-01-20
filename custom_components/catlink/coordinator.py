@@ -35,7 +35,7 @@ class CatlinkDataUpdateCoordinator(DataUpdateCoordinator[CatlinkCoordinatorData]
         )
         self.account = account
         self.devices: list[CatlinkDevice] = []
-        self.pets: list = []
+        self.pets: list[CatlinkPet] = []
 
     async def async_config_entry_first_refresh(self) -> None:
         """Fetch initial data."""

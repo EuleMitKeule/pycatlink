@@ -48,7 +48,7 @@ class CatlinkC08SensorEntityDescription(
 ):
     """Describes a CatLink C08 sensor entity."""
 
-    value_fn: Callable[[CatlinkC08Device], str | int | float | datetime | None]
+    value_fn: Callable[[CatlinkC08Device], str | int | float | datetime | None]  # type: ignore[assignment]
 
 
 @dataclass(frozen=True, kw_only=True)
