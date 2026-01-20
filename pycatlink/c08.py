@@ -95,99 +95,72 @@ class CatlinkC08Device(CatlinkDevice):
         self._about_device: CatlinkC08AboutDevice | None = None
 
     @property
-    async def device_details(self) -> CatlinkC08DeviceDetails:
+    def device_details(self) -> CatlinkC08DeviceDetails:
         """Return the device details."""
-        if self._device_details is None:
-            await self.refresh()
-
         if self._device_details is None:
             raise CatlinkError("Device details not available")
 
         return self._device_details
 
     @property
-    async def device_logs(self) -> list[CatlinkC08Log]:
+    def device_logs(self) -> list[CatlinkC08Log]:
         """Return the device logs."""
-        if self._device_logs is None:
-            await self.refresh()
-
         if self._device_logs is None:
             raise CatlinkError("Device logs not available")
 
         return self._device_logs
 
     @property
-    async def device_stats(self) -> CatlinkC08DeviceStats:
+    def device_stats(self) -> CatlinkC08DeviceStats:
         """Return the device stats."""
-        if self._device_stats is None:
-            await self.refresh()
-
         if self._device_stats is None:
             raise CatlinkError("Device stats not available")
 
         return self._device_stats
 
     @property
-    async def pet_stats(self) -> list[CatlinkC08PetStats]:
+    def pet_stats(self) -> list[CatlinkC08PetStats]:
         """Return the pet stats."""
-        if self._pet_stats is None:
-            await self.refresh()
-
         if self._pet_stats is None:
             raise CatlinkError("Pet stats not available")
 
         return self._pet_stats
 
     @property
-    async def linked_pets(self) -> list[CatlinkC08LinkedPet]:
+    def linked_pets(self) -> list[CatlinkC08LinkedPet]:
         """Return the linked pets."""
-        if self._linked_pets is None:
-            await self.refresh()
-
         if self._linked_pets is None:
             raise CatlinkError("Linked pets not available")
 
         return self._linked_pets
 
     @property
-    async def selectable_pets(self) -> list[CatlinkC08SelectablePet]:
+    def selectable_pets(self) -> list[CatlinkC08SelectablePet]:
         """Return the selectable pets."""
-        if self._selectable_pets is None:
-            await self.refresh()
-
         if self._selectable_pets is None:
             raise CatlinkError("Selectable pets not available")
 
         return self._selectable_pets
 
     @property
-    async def wifi_info(self) -> CatlinkC08WifiInfo:
+    def wifi_info(self) -> CatlinkC08WifiInfo:
         """Return the WiFi info."""
-        if self._wifi_info is None:
-            await self.refresh()
-
         if self._wifi_info is None:
             raise CatlinkError("WiFi info not available")
 
         return self._wifi_info
 
     @property
-    async def notice_configs(self) -> list[CatlinkC08NoticeConfig]:
+    def notice_configs(self) -> list[CatlinkC08NoticeConfig]:
         """Return the notice configurations."""
-        if self._notice_configs is None:
-            await self.refresh()
-
         if self._notice_configs is None:
             raise CatlinkError("Notice configurations not available")
 
         return self._notice_configs
 
     @property
-    async def about_device(self) -> CatlinkC08AboutDevice:
+    def about_device(self) -> CatlinkC08AboutDevice:
         """Return the about device information."""
-        if self._about_device is None:
-            await self.refresh()
-
         if self._about_device is None:
             raise CatlinkError("About device information not available")
 
