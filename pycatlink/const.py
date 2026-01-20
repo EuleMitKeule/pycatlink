@@ -39,6 +39,7 @@ DEFAULT_REQUEST_TIMEOUT = 5
 
 API_LOGIN_PASSWORD = "login/password"
 API_DEVICE_LIST = "token/device/union/list/sorted"
+API_PET_LIST = "token/pet/list"
 API_DEVICE_CHANGE_MODE = "token/device/changeMode"
 API_DEVICE_ACTION_COMMAND = "token/device/actionCmd"
 API_DEVICE_INFO = "token/device/info"
@@ -130,6 +131,8 @@ RESPONSE_KEY_DEVICE_LOG_TOP5 = "deviceLogTop5"
 RESPONSE_KEY_FEEDER_LOG_TOP5 = "feederLogTop5"
 RESPONSE_KEY_SCOOPER_LOG_TOP5 = "scooperLogTop5"
 RESPONSE_KEY_LOG_TOP5 = "scooperLogTop5"
+RESPONSE_KEY_PETS = "pets"
+RESPONSE_KEY_RECORDS = "records"
 
 DEVICE_DETAIL_WORK_STATUS = "workStatus"
 DEVICE_DETAIL_WORK_MODE = "workModel"

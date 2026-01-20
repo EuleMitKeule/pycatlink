@@ -89,6 +89,46 @@ async def api_fetch(
 
 @app.command()
 @syncify
+async def pets(
+    phone: str = typer.Option(
+        ...,
+        help="Catlink account phone number (not starting with 0 or country code).",
+        envvar=ENV_CATLINK_PHONE,
+    ),
+    password: str = typer.Option(
+        ...,
+        help="Catlink account password.",
+        envvar=ENV_CATLINK_PASSWORD,
+    ),
+    phone_international_code: str = typer.Option(
+        ...,
+        help="Catlink account phone international code.",
+        envvar=ENV_CATLINK_PHONE_INTERNATIONAL_CODE,
+    ),
+) -> None:
+    """Print the list of pets associated with the account."""
+
+    config = CatlinkAccountConfig(
+        phone=phone,
+        password=password,
+        phone_international_code=phone_international_code,
+    )
+
+    account = CatlinkAccount(config)
+
+    typer.echo("Fetching pets...")
+
+    pets = await account.get_pets()
+
+    typer.echo(f"Found {len(pets)} pet(s)")
+
+    for i, pet in enumerate(pets):
+        typer.echo(f"Pet {i + 1}")
+        typer.echo(pet)
+
+
+@app.command()
+@syncify
 async def devices(
     phone: str = typer.Option(
         ...,

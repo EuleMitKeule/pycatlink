@@ -2,10 +2,11 @@
   "domain": "catlink",
   "name": "CatLink",
   "version": "0.0.0-dev",
+  "config_flow": true,
   "documentation": "https://github.com/EuleMitKeule/pycatlink",
   "issue_tracker": "https://github.com/EuleMitKeule/pycatlink/issues",
   "requirements": [
-    "pycatlink==1.0.0a1"
+    "pycatlink==1.0.0a9"
   ],
   "codeowners": [
     "@EuleMitKeule"

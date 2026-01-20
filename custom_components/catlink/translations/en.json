@@ -1,0 +1,193 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Set up CatLink",
+                "description": "Enter your CatLink account credentials",
+                "data": {
+                    "phone": "Phone number",
+                    "password": "Password",
+                    "phone_international_code": "Phone international code"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "Failed to connect to CatLink servers",
+            "invalid_auth": "Invalid phone number or password",
+            "unknown": "Unexpected error occurred"
+        },
+        "abort": {
+            "already_configured": "Account is already configured"
+        }
+    },
+    "entity": {
+        "sensor": {
+            "current_message": {
+                "name": "Current message"
+            },
+            "work_status": {
+                "name": "Work status",
+                "state": {
+                    "idle": "Idle",
+                    "running": "Running",
+                    "need_reset": "Need reset"
+                }
+            },
+            "cat_litter_weight": {
+                "name": "Cat litter weight"
+            },
+            "last_heartbeat": {
+                "name": "Last heartbeat"
+            },
+            "litter_countdown": {
+                "name": "Litter countdown"
+            },
+            "induction_times": {
+                "name": "Induction times"
+            },
+            "manual_times": {
+                "name": "Manual times"
+            },
+            "deodorant_countdown": {
+                "name": "Deodorant countdown"
+            },
+            "timezone_id": {
+                "name": "Timezone"
+            },
+            "cat_litter_pave_second": {
+                "name": "Litter pave duration"
+            },
+            "timer_times": {
+                "name": "Timer cycles"
+            },
+            "clear_times": {
+                "name": "Clear cycles"
+            },
+            "full_times": {
+                "name": "Full bin count"
+            },
+            "full_close_times": {
+                "name": "Full bin close count"
+            },
+            "box_full_sensitivity": {
+                "name": "Full bin sensitivity"
+            }
+        },
+        "binary_sensor": {
+            "online": {
+                "name": "Online"
+            },
+            "quiet_enable": {
+                "name": "Quiet mode"
+            }
+        },
+        "button": {
+            "start_litter_leveling": {
+                "name": "Start litter leveling"
+            },
+            "pause_litter_leveling": {
+                "name": "Pause litter leveling"
+            },
+            "start_cleaning": {
+                "name": "Start cleaning"
+            },
+            "pause_cleaning": {
+                "name": "Pause cleaning"
+            },
+            "cancel_cleaning": {
+                "name": "Cancel cleaning"
+            },
+            "refresh": {
+                "name": "Refresh"
+            }
+        },
+        "select": {
+            "work_model": {
+                "name": "Work mode",
+                "state": {
+                    "automatic": "Auto",
+                    "manual": "Manual",
+                    "scheduled": "Scheduled"
+                }
+            },
+            "auto_mode_safe_time": {
+                "name": "Auto mode safe time",
+                "state": {
+                    "1_minute": "1 minute",
+                    "3_minutes": "3 minutes",
+                    "5_minutes": "5 minutes",
+                    "7_minutes": "7 minutes",
+                    "10_minutes": "10 minutes",
+                    "15_minutes": "15 minutes",
+                    "30_minutes": "30 minutes"
+                }
+            },
+            "cat_litter_type": {
+                "name": "Cat litter type",
+                "state": {
+                    "bentonite": "Bentonite",
+                    "mixed": "Mixed"
+                }
+            },
+            "quiet_mode_start_time": {
+                "name": "Quiet mode start time"
+            },
+            "quiet_mode_end_time": {
+                "name": "Quiet mode end time"
+            }
+        },
+        "switch": {
+            "auto_burial": {
+                "name": "Auto burial"
+            },
+            "child_lock": {
+                "name": "Child lock"
+            },
+            "continuous_cleaning": {
+                "name": "Continuous cleaning"
+            },
+            "indicator_light": {
+                "name": "Indicator light"
+            },
+            "keypad_tone": {
+                "name": "Keypad tone"
+            },
+            "kitty_model": {
+                "name": "Kitty model"
+            },
+            "pet_weight_auto_update": {
+                "name": "Pet weight auto update"
+            },
+            "quiet_mode": {
+                "name": "Quiet mode"
+            },
+            "notification_cat_came": {
+                "name": "Cat came notification"
+            },
+            "notification_box_full": {
+                "name": "Box full notification"
+            },
+            "notification_replace_garbage_bag": {
+                "name": "Replace garbage bag notification"
+            },
+            "notification_wash_scooper": {
+                "name": "Wash scooper notification"
+            },
+            "notification_replace_deodorant": {
+                "name": "Replace deodorant notification"
+            },
+            "notification_litter_not_enough": {
+                "name": "Litter not enough notification"
+            },
+            "notification_sandbox_not_enough": {
+                "name": "Sandbox not enough notification"
+            },
+            "notification_anti_pinch": {
+                "name": "Anti-pinch notification"
+            },
+            "notification_firmware_updated": {
+                "name": "Firmware updated notification"
+            }
+        }
+    }
+}

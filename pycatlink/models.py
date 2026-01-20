@@ -284,8 +284,8 @@ class CatlinkC08LinkedPet(JSONWizard):
 
 
 @dataclass
-class CatlinkC08SelectablePet(JSONWizard):
-    """C08 Selectable pet information."""
+class CatlinkPet(JSONWizard):
+    """Pet information."""
 
     id: str | None
     type: int | None

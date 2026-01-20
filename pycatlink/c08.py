@@ -71,8 +71,8 @@ from .models import (
     CatlinkC08Log,
     CatlinkC08NoticeConfig,
     CatlinkC08PetStats,
-    CatlinkC08SelectablePet,
     CatlinkC08WifiInfo,
+    CatlinkPet,
 )
 
 
@@ -89,7 +89,7 @@ class CatlinkC08Device(CatlinkDevice):
         self._device_stats: CatlinkC08DeviceStats | None = None
         self._pet_stats: list[CatlinkC08PetStats] | None = None
         self._linked_pets: list[CatlinkC08LinkedPet] | None = None
-        self._selectable_pets: list[CatlinkC08SelectablePet] | None = None
+        self._selectable_pets: list[CatlinkPet] | None = None
         self._wifi_info: CatlinkC08WifiInfo | None = None
         self._notice_configs: list[CatlinkC08NoticeConfig] | None = None
         self._about_device: CatlinkC08AboutDevice | None = None
@@ -135,7 +135,7 @@ class CatlinkC08Device(CatlinkDevice):
         return self._linked_pets
 
     @property
-    def selectable_pets(self) -> list[CatlinkC08SelectablePet]:
+    def selectable_pets(self) -> list[CatlinkPet]:
         """Return the selectable pets."""
         if self._selectable_pets is None:
             raise CatlinkError("Selectable pets not available")
@@ -248,7 +248,7 @@ class CatlinkC08Device(CatlinkDevice):
         )
 
         self._selectable_pets = [
-            CatlinkC08SelectablePet.from_dict(response_element)
+            CatlinkPet.from_dict(response_element)
             for response_element in response.get(RESPONSE_KEY_DATA, {}).get(
                 RESPONSE_KEY_CATS, []
             )
