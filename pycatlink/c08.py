@@ -72,6 +72,7 @@ from .models import (
     CatlinkPet,
 )
 
+
 class CatlinkC08Device(CatlinkDevice):
     """Litter box C08 class for CatLink."""
 

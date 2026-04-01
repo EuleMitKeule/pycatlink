@@ -6,11 +6,6 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 
-from pycatlink.c08 import CatlinkC08Device
-from pycatlink.const import CatlinkC08WorkStatus
-from pycatlink.device import CatlinkDevice
-from pycatlink.models import CatlinkPet
-
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,
@@ -22,6 +17,11 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
+
+from pycatlink.c08 import CatlinkC08Device
+from pycatlink.const import CatlinkC08WorkStatus
+from pycatlink.device import CatlinkDevice
+from pycatlink.models import CatlinkPet
 
 from .const import DOMAIN, MANUFACTURER
 from .coordinator import CatlinkDataUpdateCoordinator
