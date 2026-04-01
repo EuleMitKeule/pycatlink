@@ -200,31 +200,6 @@ SENSORS: tuple[CatlinkSensorEntityDescription, ...] = (
             else None
         ),
     ),
-    CatlinkC08SensorEntityDescription(
-        key="wifi_rssi",
-        translation_key="wifi_rssi",
-        device_class=SensorDeviceClass.SIGNAL_STRENGTH,
-        native_unit_of_measurement="dBm",
-        state_class=SensorStateClass.MEASUREMENT,
-        entity_category=EntityCategory.DIAGNOSTIC,
-        value_fn=lambda data: (
-            int(data.wifi_info.rssi) if data.wifi_info.rssi else None
-        ),
-    ),
-    CatlinkC08SensorEntityDescription(
-        key="wifi_name",
-        translation_key="wifi_name",
-        entity_category=EntityCategory.DIAGNOSTIC,
-        value_fn=lambda data: data.wifi_info.wifi_name,
-    ),
-    CatlinkC08SensorEntityDescription(
-        key="wifi_signal_percent",
-        translation_key="wifi_signal_percent",
-        native_unit_of_measurement="%",
-        state_class=SensorStateClass.MEASUREMENT,
-        entity_category=EntityCategory.DIAGNOSTIC,
-        value_fn=lambda data: data.wifi_info.wifi_signal_percent,
-    ),
 )
 
 PET_SENSORS: tuple[CatlinkPetSensorEntityDescription, ...] = (
@@ -239,7 +214,6 @@ PET_SENSORS: tuple[CatlinkPetSensorEntityDescription, ...] = (
     CatlinkPetSensorEntityDescription(
         key="age",
         translation_key="pet_age",
-        device_class=SensorDeviceClass.DURATION,
         native_unit_of_measurement=UnitOfTime.MONTHS,
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda pet: (

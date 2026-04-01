@@ -341,17 +341,6 @@ class CatlinkPet(JSONWizard):
 
 
 @dataclass
-class CatlinkC08WifiInfo(JSONWizard):
-    """C08 Wifi information."""
-
-    rssi: str | None
-    wifi_name: str | None
-    wifi_status: str | None
-    wifi_signal_percent: int | None
-    band: Any | None
-
-
-@dataclass
 class CatlinkC08NoticeConfig(JSONWizard):
     """C08 Notice configuration."""
 

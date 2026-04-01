@@ -10,7 +10,6 @@ from .const import (
     API_LITTERBOX_ABOUT_DEVICE,
     API_LITTERBOX_ACTION_COMMAND_V3,
     API_LITTERBOX_C08_INFO,
-    API_LITTERBOX_C08_WIFI_INFO,
     API_LITTERBOX_CAT_LIST_SELECTABLE,
     API_LITTERBOX_CAT_LITTER_SETTING,
     API_LITTERBOX_CHANGE_MODE,
@@ -49,7 +48,6 @@ from .const import (
     RESPONSE_KEY_INFO,
     RESPONSE_KEY_LOG_TOP5,
     RESPONSE_KEY_NOTICE_CONFIGS,
-    RESPONSE_KEY_WIFI_INFO,
     CatlinkC08Action,
     CatlinkC08AutoModeSafeTimeOption,
     CatlinkC08Behavior,
@@ -71,10 +69,8 @@ from .models import (
     CatlinkC08Log,
     CatlinkC08NoticeConfig,
     CatlinkC08PetStats,
-    CatlinkC08WifiInfo,
     CatlinkPet,
 )
-
 
 class CatlinkC08Device(CatlinkDevice):
     """Litter box C08 class for CatLink."""
@@ -90,7 +86,6 @@ class CatlinkC08Device(CatlinkDevice):
         self._pet_stats: list[CatlinkC08PetStats] | None = None
         self._linked_pets: list[CatlinkC08LinkedPet] | None = None
         self._selectable_pets: list[CatlinkPet] | None = None
-        self._wifi_info: CatlinkC08WifiInfo | None = None
         self._notice_configs: list[CatlinkC08NoticeConfig] | None = None
         self._about_device: CatlinkC08AboutDevice | None = None
 
@@ -141,14 +136,6 @@ class CatlinkC08Device(CatlinkDevice):
             raise CatlinkError("Selectable pets not available")
 
         return self._selectable_pets
-
-    @property
-    def wifi_info(self) -> CatlinkC08WifiInfo:
-        """Return the WiFi info."""
-        if self._wifi_info is None:
-            raise CatlinkError("WiFi info not available")
-
-        return self._wifi_info
 
     @property
     def notice_configs(self) -> list[CatlinkC08NoticeConfig]:
@@ -253,18 +240,6 @@ class CatlinkC08Device(CatlinkDevice):
                 RESPONSE_KEY_CATS, []
             )
         ]
-
-        response = await self._client.request_with_auto_login(
-            path=API_LITTERBOX_C08_WIFI_INFO,
-            method=HttpMethod.GET,
-            parameters={
-                PARAMETER_DEVICE_ID: self.device_info.id,
-            },
-        )
-
-        self._wifi_info = CatlinkC08WifiInfo.from_dict(
-            response.get(RESPONSE_KEY_DATA, {}).get(RESPONSE_KEY_WIFI_INFO, {})
-        )
 
         response = await self._client.request_with_auto_login(
             path=API_LITTERBOX_NOTICE_CONFIG_LIST_C08,

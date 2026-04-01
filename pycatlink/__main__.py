@@ -240,9 +240,6 @@ async def device(
     typer.echo(f"Selectable pets for device ID {device_id}:")
     typer.echo(device.selectable_pets)
 
-    typer.echo(f"WiFi info for device ID {device_id}:")
-    typer.echo(device.wifi_info)
-
     typer.echo(f"Notice configurations for device ID {device_id}:")
     typer.echo(device.notice_configs)
 

@@ -1,9 +1,12 @@
 [project]
 name = "pycatlink"
-version = "0.0.0-dev"
+authors = [{ name = "Lennard Beers", email = "l.beers@outlook.de" }]
+maintainers = [{ name = "Lennard Beers", email = "l.beers@outlook.de" }]
+license = { file = "LICENSE.md" }
 description = "CatLink API Library"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14.2"
+version = "0.0.0-dev"
 dependencies = [
     "aiohttp>=3.8.0",
     "cryptography>=41.0.0",

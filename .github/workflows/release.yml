@@ -7,6 +7,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     concurrency: release
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -15,6 +17,28 @@ jobs:
           persist-credentials: false
 
       - name: Semantic Release
+        id: semantic
         uses: cycjimmy/semantic-release-action@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+
+      - name: Inject version into manifest
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: |
+          sed -i 's/"version": "0.0.0-dev"/"version": "${{ steps.semantic.outputs.new_release_version }}"/' \
+            custom_components/catlink/manifest.json
+          sed -i 's/version = "0.0.0-dev"/version = "${{ steps.semantic.outputs.new_release_version }}"/' \
+            pyproject.toml
+
+      - name: Create zip
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: |
+          cd custom_components/catlink
+          zip -r ../../catlink.zip .
+
+      - name: Upload zip to release
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: |
+          gh release upload ${{ steps.semantic.outputs.new_release_version }} catlink.zip
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
